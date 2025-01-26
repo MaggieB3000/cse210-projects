@@ -1,0 +1,52 @@
+@startuml
+
+class Journal {
+
+- Event[] entries
+- {static} string[] prompt_List
++ Event Write_New_Event()
++ void Display()
++ string Save()
++ void Load()
++ int Menu()
+
+}
+note right of Journal::Write_New_Event
+  Show the user a random prompt, and save their response, the prompt, and the date as an Event.
+end note
+note right of Journal::Display
+  Iterate through all entries in the journal and display them to the screen.
+end note
+note right of Journal::Save
+  Prompt the user for a filename and then save the current journal (the complete list of entries) to that file location.
+end note
+note right of Journal::Load
+  Prompt the user for a filename and then load the journal (a complete list of entries) from that file. This should replace any entries currently stored the journal.
+end note
+note right of Journal::Menu
+  Provide a menu that allows the user choose these options.
+end note
+
+
+class Event {
+
+- string prompt
+- string response
+- string date
++ string Get()
++ Event New(string prompt, string response, string date)
++ Event Load(string encoded_entry)
+
+}
+
+note right of Event::Get
+  Return the prompt, response, and date fields as an encoded string.
+end note
+note right of Event::New
+  Returns a new event object.
+end note
+note right of Event::Load
+  Create a new event object from an encoded string.
+end note
+
+@enduml

@@ -5,17 +5,17 @@ class Video
     private string _title
 private string _author
 private int _length
-private List<Comment> _commentList
+public List<Comment> _commentList
 
 public Video(string title, string author, int length)
-{
-_title = title;
-_author = author;
-_length = length;
-_commentList = new List<Comment>();
-}
+    {
+        _title = title;
+        _author = author;
+        _length = length;
+        _commentList = new List<Comment>();
+    }
 
-public string GetTitle()
+    public string GetTitle()
     {
         return _title;
     }
@@ -43,6 +43,13 @@ public string GetTitle()
         string commentText = Console.ReadLine();
         Comment comment = new Comment(username, commentText);
         _commentList.Add(comment);
+    }
+
+    public void AddCommentPreMade(string username, string text)
+    {
+        Comment comment = new Comment(username, text)
+        _commentList.Add(comment);
+
     }
 
     public int CountComments()

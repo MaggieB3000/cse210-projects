@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 class Video
 {
-    private string _title
-private string _author
-private int _length
-public List<Comment> _commentList
+    private string _title;
+private string _author;
+private int _length;
+private List<Comment> _commentList;
 
 public Video(string title, string author, int length)
     {
@@ -15,52 +16,23 @@ public Video(string title, string author, int length)
         _commentList = new List<Comment>();
     }
 
-    public string GetTitle()
+    public void AddComment(Comment comment)
     {
-        return _title;
-    }
-
-    public string GetAuthor()
-    {
-        return _author;
-    }
-
-    public int GetLength()
-    {
-        return _length;
-    }
-
-    public List<Comment> GetCommentList()
-    {
-        return _commentList;
-    }
-
-    public void AddComment()
-    {
-        Console.Write("Enter commentor's username: ");
-        string username = Console.ReadLine();
-        Console.Write("Enter comment text: ");
-        string commentText = Console.ReadLine();
-        Comment comment = new Comment(username, commentText);
         _commentList.Add(comment);
     }
 
-    public void AddCommentPreMade(string username, string text)
+    public int GetCommentCount()
     {
-        Comment comment = new Comment(username, text)
-        _commentList.Add(comment);
-
+        return _commentList.Count;
     }
 
-    public int CountComments()
+    public void FormatedVideoInfo()
     {
-        int length = _commentList.Count;
-        return length;
-    }
-
-    public string FormatedVideoInfo(string title, string author, int length, )
-    {
-        int commentNumber = CountComments;
-        return $"Video: {title}\nAuthor: {author}\nLength in Seconds: {length}\nNumber of Comments: {commentNumber}\nComments: {_commentList}"
+        Console.WriteLine($"Title: {_title}\nAuthor: {_author}\nLength: {_length} seconds\nNumber of Comments: {GetCommentCount()}\nComments:");
+        foreach (Comment comment in _commentList)
+        {
+            Console.WriteLine(comment.GetCommentDetails());
+        }
+        Console.WriteLine();
     }
 }

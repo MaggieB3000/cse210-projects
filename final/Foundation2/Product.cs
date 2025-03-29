@@ -9,6 +9,7 @@ private int _quantity;
 
 public double TotalCost()
 {
-    
+    double tempNum = 0.00;
+    return tempNum;
 }
 }

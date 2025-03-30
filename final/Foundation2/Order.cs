@@ -1,10 +1,21 @@
 using System;
+using System.Data.Common;
 
 class Order
 {
     private Customer _customer;
     private List<Product> _products;
-    private double _shippingCost;
+
+    public Order(Customer customer)
+    {
+        _customer = customer;
+        _products = new List<Product>();
+    }
+
+    public void AddProduct(Product product)
+    {
+        _products.Add(product);
+    }
 
     public double CalculatedCost()
     {
@@ -16,19 +27,30 @@ class Order
             cost = cost + productCost;
         }
 
+        if (_customer.GetIsInUS())
+        {
+            cost = cost + 5;
+        }
+        else
+        {
+            cost = cost + 35;
+        }
+
         return cost;
     }
 
-    public string PackingLabel()
+    public void PackingLabel()
     {
-        string name = _customer.GetName();
-        return $"Customer: {name}\nProducts: {_products}";
+        Console.WriteLine($"Customer: {_customer.GetName()}\nProduct ID:");
+
+        foreach (Product product in _products)
+        {
+            Console.WriteLine(product.GetFormatedProductID());
+        }
     }
 
-    public string ShippingLabel()
-    {
-        string name = _customer.GetName();
-        
-        return $"Customer: {name}\nAddress: {address}";
+    public void ShippingLabel()
+    {   
+        Console.WriteLine($"Customer: {_customer.GetName()}\nAddress:\n{_customer.GetAdress()}") ;
     }
 }

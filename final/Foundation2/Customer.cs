@@ -1,13 +1,25 @@
 using System;
+using System.Globalization;
 
 class Customer
 {
     private string _name;
     private Address _address;
 
-    public Address GetAdress()
+    public Customer(string name, Address address)
     {
-        return _address;
+        _name = name;
+        _address = address;
+    }
+
+    public bool GetIsInUS()
+    {
+        return _address.GetIsInUSAddress();
+    }
+
+    public string GetAdress()
+    {
+        return _address.FormatedAddress();
     }
 
     public string GetName()
